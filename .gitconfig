@@ -1,0 +1,34 @@
+[core]
+  editor = vim
+	ignorecase = false
+[alias]
+  br = branch
+  ci = commit
+  co = checkout
+  df = diff -b
+  dif = diff -b
+  sh = show
+  st = status
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = cyan bold
+  local = yellow
+  remote = magenta
+[color "diff"]
+  new = green bold
+  old = red bold
+  frag = cyan bold
+  meta = white bold
+  whitespace = red reverse
+[color "status"]
+  added = green bold
+  changed = cyan bold
+  untracked = white bold
+[branch]
+	autosetuprebase = always
+[user]
+	name = Keith Laban
+	email = kelaban17@gmail.com
