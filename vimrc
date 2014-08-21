@@ -1,11 +1,12 @@
-"Pathogen
 execute pathogen#infect()
 
 syntax on
 
+" Some reasonable defaults
+"colorscheme candyman
 set background=dark
 colorscheme solarized
-" Some reasonable defaults
+
 set cursorline
 set modelines=0
 set hidden
@@ -47,6 +48,13 @@ set virtualedit=block,onemore
 set wildmenu
 set wildmode=longest,list:longest
 set endofline
+set fileformat=unix
+
+"if you use the homebrew version of vim this will add clipboard support
+set clipboard=unnamed
+
+"see :help statusline
+set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
 
 let mapleader=","
 
@@ -59,7 +67,7 @@ nnoremap <F1> <ESC>
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
-" jk to esc
+" jj to esc
 inoremap jj <Esc>
 cnoremap jj <C-c>
 
@@ -70,17 +78,6 @@ set noesckeys
 set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
-
-" Ctrl-P plugin
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.class$',
-  \ }
-let g:ctrlp_regexp = 1
-let g:ctrlp_max_depth = 40
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
 " Handles lines that are too big for the screen
 let &showbreak = '> '
@@ -104,6 +101,9 @@ inoremap # X<BS>#
 " If any literal tabs make their way into your files, highlight them
 syn match tab display "\t"
 hi link tab Error
+
+" When you write a file, make sure no lines end in whitespace
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Highlight lines over 80 characters
 match ErrorMsg '\%>80v.\+'
@@ -171,7 +171,7 @@ noremap <C-k> <C-u>
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
 " Better MatchParen
-:hi MatchParen cterm=bold ctermbg=none ctermfg=white
+":hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
@@ -184,28 +184,20 @@ function! Website ()
 endfunction
 nnoremap gw :call Website()<CR><CR>
 
-" When you create a new file, fills in some code for you
-au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
-au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
-au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
-au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
-au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
-
-" When you write a file, make sure no lines end in whitespace
-autocmd BufWritePre * :%s/\s\+$//e
 
 " For writing text
 au BufNewFile,BufRead *.txt setf txt
 au FileType txt set tw=79
 
-" Latex
-au BufNewFile,BufRead *.tex setf tex
-au FileType tex set tw=79
 
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" For opening markdown files in chrome"
+autocmd BufEnter *.md exe 'noremap pp :!open -a "/Applications/Google\ Chrome.app" %:p <CR>'
 
-nnoremap <C-S-P> :Ack!<Space>
+" only open NERDTree if no file is specified
+autocmd StdinReadPre * let s:std_in=0
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+noremap <C-n> :NERDTreeToggle<CR>
+
+" Ack Keybinding
+nnoremap <C-a><C-p> :Ack!<Space>
 let g:ackhighlight = 1
-
-filetype plugin on

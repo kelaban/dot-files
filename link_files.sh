@@ -12,3 +12,6 @@ link vim
 link bashrc
 link bash_profile
 link ackrc
+
+link git-completion.bash
+link git-prompt.sh

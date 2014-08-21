@@ -1,4 +1,7 @@
---ignore-directory=is:node_modules
---smart-case
+--ignore-dir=is:node_modules
+
 --color
+--smart-case
 --column
+--pager=less -r
+--sort-files
