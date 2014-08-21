@@ -1,0 +1,4 @@
+--ignore-directory=is:node_modules
+--smart-case
+--color
+--column

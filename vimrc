@@ -1,5 +1,10 @@
+"Pathogen
+execute pathogen#infect()
+
 syntax on
 
+set background=dark
+colorscheme solarized
 " Some reasonable defaults
 set cursorline
 set modelines=0
@@ -197,11 +202,10 @@ au FileType txt set tw=79
 au BufNewFile,BufRead *.tex setf tex
 au FileType tex set tw=79
 
-" Markdown
-autocmd BufEnter *.md exe 'noremap <C-P> :!open -a "Google Chrome" %:p<CR>'
+autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"Pathogen
-execute pathogen#infect()
-
+nnoremap <C-S-P> :Ack!<Space>
+let g:ackhighlight = 1
 
 filetype plugin on
