@@ -6,7 +6,10 @@ My dot files.
 To Install:
 ```
 cd
-git clone https://github.com/kelaban/dot-files && cd dot-files
+git clone https://github.com/kelaban/dot-files
+cd dot-files
+git submodule init
+git submodule update
 ./link_files
 ```
 
