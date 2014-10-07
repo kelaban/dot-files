@@ -201,3 +201,11 @@ noremap <C-n> :NERDTreeToggle<CR>
 " Ack Keybinding
 nnoremap <C-a><C-p> :Ack!<Space>
 let g:ackhighlight = 1
+
+function! AirlineInit()
+  let g:airline_powerline_fonts = 1
+  let g:airline_section_z = airline#section#create(['windowswap', '%3p%%', 'linenr', ':%3c', ':%3B'])
+endfunction
+
+autocmd VimEnter * call AirlineInit()
+
