@@ -8,9 +8,5 @@ To Install:
 cd
 git clone https://github.com/kelaban/dot-files
 cd dot-files
-git submodule init
-git submodule update
-./link_files
+./setup
 ```
-
-link_files will complain if those config files already exist. Backing up dot files first would be smart then run link files
