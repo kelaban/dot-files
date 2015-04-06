@@ -57,8 +57,6 @@ set clipboard=unnamed
 "see :help statusline
 set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
 
-let mapleader=","
-
 " Turn off help
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
@@ -77,8 +75,6 @@ set noesckeys
 
 " Trying to use completion
 set complete=.,b,u,]
-imap <Leader><Tab> <C-P>
-inoremap <C-Tab> <C-X> <C-L>
 
 " Handles lines that are too big for the screen
 let &showbreak = '> '
@@ -104,7 +100,7 @@ syn match tab display "\t"
 hi link tab Error
 
 " When you write a file, make sure no lines end in whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 " Highlight lines over 80 characters
 match ErrorMsg '\%>80v.\+'
@@ -220,8 +216,8 @@ endfunction
 autocmd VimEnter * call AirlineInit()
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -229,8 +225,11 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 "indentLine config
-let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_leadingSpaceEnabled = 1
+"let g:indentLine_leadingSpaceChar = '·'
+"let g:indentLine_leadingSpaceEnabled = 1
 
 
 let g:delimitMate_eol_marker = ''
+
+
+syntax match ExtraWhitespace /\s\+$/ containedin=ALLBUT,IndentLine conceal cchar=.
