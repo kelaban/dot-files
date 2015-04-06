@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 
 syntax on
 
@@ -218,3 +219,18 @@ endfunction
 
 autocmd VimEnter * call AirlineInit()
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+
+"indentLine config
+let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_leadingSpaceEnabled = 1
+
+
+let g:delimitMate_eol_marker = ''

@@ -31,12 +31,15 @@
 [submodule "vim/bundle/vim-scala"]
 	path = vim/bundle/vim-scala
 	url = https://github.com/derekwyatt/vim-scala
-[submodule "vim/bundle/vim-abolish"]
-	path = vim/bundle/vim-abolish
-	url = https://github.com/tpope/vim-abolish
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
+[submodule "vim/bundle/indentLine"]
+	path = vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "vim/bundle/delimitMate"]
+	path = vim/bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
