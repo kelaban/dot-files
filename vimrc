@@ -234,3 +234,11 @@ let g:delimitMate_eol_marker = ''
 
 
 syntax match ExtraWhitespace /\s\+$/ containedin=ALLBUT,IndentLine conceal cchar=.
+
+
+"gvim settings
+set guifont=Inconsolata-dz\ for\ Powerline:h14
+"disable L R and Bottom scroll bars by default (Note scroll still works with mouse)
+set guioptions=egm
+
+
