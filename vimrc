@@ -241,6 +241,8 @@ endfunction
 
 autocmd VimEnter * call CustomHighlighting()
 
+set omnifunc=syntaxcomplete#Complete
+
 " When you write a file, make sure no lines end in whitespace
 "autocmd BufWritePre * :%s/\s\+$//e
 
