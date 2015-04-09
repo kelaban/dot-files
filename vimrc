@@ -1,10 +1,10 @@
+" Some reasonable defaults
 execute pathogen#infect()
 Helptags
 
 syntax on
 
-" Some reasonable defaults
-"colorscheme candyman
+
 set background=dark
 colorscheme solarized
 
@@ -95,18 +95,6 @@ endif
 " it pushes that to the first column. This fixes that issue
 inoremap # X<BS>#
 
-" If any literal tabs make their way into your files, highlight them
-syn match tab display "\t"
-hi link tab Error
-
-" When you write a file, make sure no lines end in whitespace
-"autocmd BufWritePre * :%s/\s\+$//e
-
-" Highlight lines over 80 characters
-match ErrorMsg '\%>80v.\+'
-
-" Highlight conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Use :w!! to save with sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -229,16 +217,34 @@ let g:UltiSnipsEditSplit="vertical"
 "let g:indentLine_leadingSpaceChar = '·'
 "let g:indentLine_leadingSpaceEnabled = 1
 
-
+let g:delimitMate_insert_eol_marker = 1
 let g:delimitMate_eol_marker = ''
+let g:delmitMate_expand_cr = 1
 
 
-syntax match ExtraWhitespace /\s\+$/ containedin=ALLBUT,IndentLine conceal cchar=.
+function! CustomHighlighting()
+  " If any literal tabs make their way into your files, highlight them
+  syn match tab display "\t"
+  hi link tab ErrorMsg
 
+
+  " Highlight lines over 80 characters
+  "match ErrorMsg '\%>80v.\+'
+
+  " Highlight conflict markers
+  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+  highlight ExtraWhiteSpace term=bold ctermfg=red guifg=red
+  syntax match ExtraWhitespace /\s\+$/ containedin=ALL conceal cchar=.
+
+endfunction
+
+autocmd VimEnter * call CustomHighlighting()
+
+" When you write a file, make sure no lines end in whitespace
+"autocmd BufWritePre * :%s/\s\+$//e
 
 "gvim settings
 set guifont=Inconsolata-dz\ for\ Powerline:h14
 "disable L R and Bottom scroll bars by default (Note scroll still works with mouse)
 set guioptions=egm
-
-
