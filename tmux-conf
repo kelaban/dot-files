@@ -1,0 +1,55 @@
+set-option -g default-command "reattach-to-user-namespace -l bash"
+set-option -g display-time 4000
+
+#remap prefix to Control + a
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# Mouse mode
+set -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+
+# vi copy mode movement
+set-window-option -g mode-keys vi
+bind-key -t vi-copy v begin-selection
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Update default binding of `Enter` to also use copy-pipe
+unbind -t vi-copy Enter
+bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+# Bind ']' to use pbpaste
+bind ] run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
+
+# Pane movement
+bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
+
+# force a reload of the config file
+unbind r
+bind r source-file ~/.tmux.conf
+
+
+#create a new window with a prod bach machine
+bind-key S-b command-prompt -p "machine name:" "new-window -n '%1' 'tkpssh %1'"
+
+set-window-option -g automatic-rename on
+set-option -g set-titles on
+set-option -g set-titles-string '#H:#S.#I.#P #W #T' # window number,program name, active(or not)
+
+#Moving windows Ctrl+Shift+Left will move the current window to the left. Similarly right
+bind-key -n C-S-Left swap-window -t -1
+bind-key -n C-S-Right swap-window -t +2
+
+
+#Synchronize panes
+bind-key -n C-s set-window-option synchronize-panes
+
+
+
+#Window pane movement
+unbind-key p
+bind-key N previous-window
