@@ -33,6 +33,7 @@ link vim
 link bashrc
 link bash_profile
 link ackrc
+link tmux.conf
 
 link git-completion.bash
 link git-prompt.sh

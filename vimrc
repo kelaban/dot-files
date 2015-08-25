@@ -1,5 +1,6 @@
 " Some reasonable defaults
 execute pathogen#infect()
+filetype plugin indent on
 Helptags
 
 syntax on
@@ -50,6 +51,13 @@ set wildmenu
 set wildmode=longest,list:longest
 set endofline
 set fileformat=unix
+
+set wildmenu
+set wildmode=list:longest,full
+
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "if you use the homebrew version of vim this will add clipboard support
 set clipboard=unnamed
@@ -155,8 +163,6 @@ noremap <C-k> <C-u>
 " Splits the current line at current position
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
-" Better MatchParen
-":hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
@@ -221,32 +227,36 @@ let g:delimitMate_insert_eol_marker = 1
 let g:delimitMate_eol_marker = ''
 let g:delmitMate_expand_cr = 1
 
-
-function! CustomHighlighting()
-  " If any literal tabs make their way into your files, highlight them
-  syn match tab display "\t"
-  hi link tab ErrorMsg
+let g:SuperTabDefaultCompletionType = 'context'
 
 
-  " Highlight lines over 80 characters
-  "match ErrorMsg '\%>80v.\+'
-
-  " Highlight conflict markers
-  match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-  highlight ExtraWhiteSpace term=bold ctermfg=red guifg=red
-  syntax match ExtraWhitespace /\s\+$/ containedin=ALL conceal cchar=.
-
-endfunction
-
-autocmd VimEnter * call CustomHighlighting()
-
-set omnifunc=syntaxcomplete#Complete
 
 " When you write a file, make sure no lines end in whitespace
-"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 "gvim settings
 set guifont=Inconsolata-dz\ for\ Powerline:h14
 "disable L R and Bottom scroll bars by default (Note scroll still works with mouse)
 set guioptions=egm
+
+
+
+" If any literal tabs make their way into your files, highlight them
+syn match tab display "\t" containedin=ALL
+hi link tab ErrorMsg
+
+" Better MatchParen
+":hi MatchParen cterm=bold ctermbg=none ctermfg=white
+
+" Highlight lines over 80 characters
+"match ErrorMsg '\%>80v.\+'
+
+" Highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+highlight ExtraWhiteSpace term=bold ctermfg=red guifg=red
+syn match ExtraWhitespace /\s\+$/ containedin=ALL conceal cchar=.
+
+
+"Eclim settings
+let g:EclimLoggingDisabled = 1
