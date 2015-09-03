@@ -14,8 +14,9 @@ function answer_is_true {
 
 link () {
   fname=$1
+  new_name=${2:-$fname}
   new_file=$DIR/$fname
-  home_file=~/.$fname
+  home_file=~/.$new_name
 
   if [ -e $home_file ]; then
     if answer_is_true "$home_file is already installed, backup and link $new_file now?"; then
@@ -30,9 +31,11 @@ link () {
 
 link vimrc
 link vim
+link dircolors-solarized/dircolors.256dark dir_colors
 link bashrc
 link bash_profile
 link ackrc
+link tmux
 link tmux.conf
 
 link git-completion.bash

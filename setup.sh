@@ -75,7 +75,11 @@ if cannot_find python; then
 fi
 
 
-
+if cannot_find gls; then
+  if answer_is_true "install coreutils now?"; then
+    brew install python
+  fi
+fi
 
 if cannot_find ack; then
   if answer_is_true "install ack now?"; then

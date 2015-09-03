@@ -14,15 +14,15 @@ export PS1=${PS1}
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
-alias ls='ls -FG'
+alias ls='ls -F --color=always'
 alias ll='ls -l'
 alias lla='ls -lfa'
 alias less='less -R' # Less with colors
 alias lless='ls -la | less'
 alias cls='clear; ls'
 alias vi='vim'
-alias grep='grep --colour=auto'
-alias grepr='grep -r'
+alias grep='grep --colour=always'
+alias egrep='egrep --colour=always'
 alias sftpdev='sftp  -P 2222 klaban1@10.122.132.165'
 alias j='jobs'
 alias ip='ifconfig | grep inet | grep -v inet6 | grep -v 127.0.0.1 | cut -d " " -f 2'
@@ -33,6 +33,9 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
+[[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
+
+[[ -s $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-[[ -s $HOME/.bashrc.local ]] && source $HOME/.bashrc.local
