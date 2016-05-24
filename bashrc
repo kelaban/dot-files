@@ -26,6 +26,10 @@ alias egrep='egrep --colour=always'
 alias sftpdev='sftp  -P 2222 klaban1@10.122.132.165'
 alias j='jobs'
 alias ip='ifconfig | grep inet | grep -v inet6 | grep -v 127.0.0.1 | cut -d " " -f 2'
+alias h='history'
+
+#verify history commands when using !(),!!, !? commands
+shopt -s histverify
 
 set -o emacs
 

@@ -51,6 +51,9 @@ set wildmenu
 set wildmode=longest,list:longest
 set endofline
 set fileformat=unix
+set list listchars=tab:»-,trail:░,extends:>,nbsp:↔
+set mouse=a
+set ttymouse=sgr
 
 set wildmenu
 set wildmode=list:longest,full
@@ -209,6 +212,11 @@ endfunction
 
 autocmd VimEnter * call AirlineInit()
 
+"Fugitive settings
+"auto clean fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -232,7 +240,7 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 
 " When you write a file, make sure no lines end in whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 
 "gvim settings
 set guifont=Inconsolata-dz\ for\ Powerline:h14
@@ -240,10 +248,6 @@ set guifont=Inconsolata-dz\ for\ Powerline:h14
 set guioptions=egm
 
 
-
-" If any literal tabs make their way into your files, highlight them
-syn match tab display "\t" containedin=ALL
-hi link tab ErrorMsg
 
 " Better MatchParen
 ":hi MatchParen cterm=bold ctermbg=none ctermfg=white
@@ -260,3 +264,21 @@ syn match ExtraWhitespace /\s\+$/ containedin=ALL conceal cchar=.
 
 "Eclim settings
 let g:EclimLoggingDisabled = 1
+
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|class)$'
+
+function DiffW()
+  let opt = ""
+   if &diffopt =~ "icase"
+     let opt = opt . "-i "
+   endif
+   if &diffopt =~ "iwhite"
+     let opt = opt . "-w " " vim uses -b by default
+   endif
+   silent execute "!diff -a --binary " . opt .
+     \ v:fname_in . " " . v:fname_new .  " > " . v:fname_out
+endfunction
+
+set diffopt+=iwhite
+set diffexpr=DiffW()
