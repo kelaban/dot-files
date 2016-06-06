@@ -1,7 +1,7 @@
 source ~/.git-prompt.sh
 
 PS1="\n"
-PS1+="\[\033[1;3\$(if [ $? -eq 0 ]; then echo '2'; else echo '1'; fi)m\]*" #red or green star for last output
+PS1+="\[\033[1;3\$(if [ \$? -eq 0 ]; then echo '2m\]:)' ; else echo '1m\]:('; fi)" #red or green star for last output
 PS1+="\[\033[m\] \[\033[36m\]\t \d" #date and time
 PS1+="\[\033[m\] [\[\033[35m\]\j" #number of jobs
 PS1+="\[\033[m\]\[\033[38;5;208m\]|\[\033[m\]\u\[\033[38;5;208m\]|\[\033[33m\]\h" #{user} @ {host}
