@@ -14,7 +14,7 @@
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab.vim
+	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
 [submodule "vim/bundle/vim-colorschemes"]
 	path = vim/bundle/vim-colorschemes

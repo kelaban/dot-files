@@ -266,7 +266,6 @@ syn match ExtraWhitespace /\s\+$/ containedin=ALL conceal cchar=.
 let g:EclimLoggingDisabled = 1
 
 
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|class)$'
 
 function DiffW()
   let opt = ""
