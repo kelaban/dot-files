@@ -53,7 +53,7 @@ set endofline
 set fileformat=unix
 set list listchars=tab:»-,trail:░,extends:>,nbsp:↔
 set mouse=a
-set ttymouse=sgr
+set ttymouse=xterm2
 
 set wildmenu
 set wildmode=list:longest,full
