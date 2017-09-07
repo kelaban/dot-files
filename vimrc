@@ -217,16 +217,6 @@ autocmd VimEnter * call AirlineInit()
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-
 "indentLine config
 "let g:indentLine_leadingSpaceChar = '·'
 "let g:indentLine_leadingSpaceEnabled = 1
@@ -236,6 +226,8 @@ let g:delimitMate_eol_marker = ''
 let g:delmitMate_expand_cr = 1
 
 let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<tab>'
+
 
 
 
@@ -281,3 +273,9 @@ endfunction
 
 set diffopt+=iwhite
 set diffexpr=DiffW()
+
+
+
+"vim-go
+let g:go_bin_path = system("go env GOROOT") . "/bin"
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
