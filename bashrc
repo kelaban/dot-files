@@ -31,7 +31,7 @@ alias h='history'
 #verify history commands when using !(),!!, !? commands
 shopt -s histverify
 
-set -o emacs
+set -o vi
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash

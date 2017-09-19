@@ -5,7 +5,7 @@ Helptags
 
 syntax on
 
-
+let g:solarized_termtrans = 1 "dis fix colors why??
 set background=dark
 colorscheme solarized
 
@@ -13,7 +13,7 @@ set cursorline
 set modelines=0
 set hidden
 set nocompatible
-set shell=zsh
+"set shell=zsh
 set noerrorbells
 set visualbell t_vb=
 set nobackup
@@ -51,7 +51,7 @@ set wildmenu
 set wildmode=longest,list:longest
 set endofline
 set fileformat=unix
-set list listchars=tab:»-,trail:░,extends:>,nbsp:↔
+set nolist listchars=tab:»-,trail:░,extends:>,nbsp:↔
 set mouse=a
 set ttymouse=xterm2
 
@@ -196,21 +196,23 @@ noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-a><C-p> :Ack!<Space>
 let g:ackhighlight = 1
 
-function! AirlineInit()
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline_powerline_fonts = 1
-  let g:airline_left_sep = ''
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
-  let g:airline_section_z = airline#section#create(['windowswap', '%3p%%', 'linenr', ':%3c', ':%3B'])
-endfunction
 
-autocmd VimEnter * call AirlineInit()
+" vim airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" These don't actually seem like they're needed
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
+"let g:airline_section_z = airline#section#create(['windowswap', '%3p%%', 'linenr', ':%3c', ':%3B'])
+
 
 "Fugitive settings
 "auto clean fugitive buffers
@@ -277,5 +279,6 @@ set diffexpr=DiffW()
 
 
 "vim-go
-let g:go_bin_path = system("go env GOROOT") . "/bin"
-"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
