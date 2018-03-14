@@ -1,4 +1,4 @@
-source ~/.git-prompt.sh
+[[ -s $HOME/.git-prompt.sh ]] && source ~/.git-prompt.sh
 
 PS1="\n"
 PS1+="\[\033[1;3\$(if [ \$? -eq 0 ]; then echo '2m\]:)' ; else echo '1m\]:('; fi)" #red or green star for last output
@@ -21,12 +21,10 @@ alias less='less -R' # Less with colors
 alias lless='ls -la | less'
 alias cls='clear; ls'
 alias vi='vim'
-alias grep='grep --colour=always'
-alias egrep='egrep --colour=always'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
 alias sftpdev='sftp  -P 2222 klaban1@10.122.132.165'
 alias j='jobs'
-alias ip='ifconfig | grep inet | grep -v inet6 | grep -v 127.0.0.1 | cut -d " " -f 2'
-alias h='history'
 
 #verify history commands when using !(),!!, !? commands
 shopt -s histverify
