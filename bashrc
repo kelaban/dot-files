@@ -1,18 +1,18 @@
 [[ -s $HOME/.git-prompt.sh ]] && source ~/.git-prompt.sh
 
 
-RESET="\e[0m"
-GREEN="\e[32m"
-RED="\e[31m"
-BLUE="\e[34m"
-MAGENTA="\e[35m"
-ORANGE="\e[30m"
-BG_ORANGE="\e[35m"
-CYAN="\e[36m"
-YELLOW="\e[33m"
-WHITE="\e[97m"
-LIGHT_GREY="\e[37m"
-BASE1="\e[38;5;245m"
+RESET="\[\e[0m\]"
+GREEN="\[\e[32m\]"
+RED="\[\e[31m\]"
+BLUE="\[\e[34m\]"
+MAGENTA="\[\e[35m\]"
+ORANGE="\[\e[30m\]"
+BG_ORANGE="\[\e[35m\]"
+CYAN="\[\e[36m\]"
+YELLOW="\[\e[33m\]"
+WHITE="\[\e[97m\]"
+LIGHT_GREY="\[\e[37m\]"
+BASE1="\[\e[38;5;245m\]"
 
 function _update_ps1() {
   #PS1=$(powerline-shell $?)
