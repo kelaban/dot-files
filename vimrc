@@ -1,5 +1,17 @@
 " Some reasonable defaults
-execute pathogen#infect()
+
+if has("nvim")
+  let g:delve_new_command = "new"
+  execute pathogen#infect('bundle/{}', 'nvim-bundle/{}')
+  tnoremap <Esc> <C-\><C-n>
+else
+  execute pathogen#infect()
+
+  set ttymouse=xterm2
+" Fixing delay sometimes when using O
+  set noesckeys
+endif
+
 filetype plugin indent on
 Helptags
 
@@ -53,7 +65,6 @@ set endofline
 set fileformat=unix
 set nolist listchars=tab:»-,trail:░,extends:>,nbsp:↔
 set mouse=a
-set ttymouse=xterm2
 
 set wildmenu
 set wildmode=list:longest,full
@@ -81,8 +92,6 @@ autocmd WinLeave * setlocal nocursorline
 inoremap jj <Esc>
 cnoremap jj <C-c>
 
-" Fixing delay sometimes when using O
-set noesckeys
 
 " Trying to use completion
 set complete=.,b,u,]
@@ -180,8 +189,8 @@ nnoremap gw :call Website()<CR><CR>
 
 
 " For writing text
-au BufNewFile,BufRead *.txt setf txt
-au FileType txt set tw=79
+"au BufNewFile,BufRead *.txt setf txt
+"au FileType txt set tw=79
 
 
 " For opening markdown files in chrome"

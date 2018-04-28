@@ -46,3 +46,6 @@
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
 	url = https://github.com/ervandew/supertab
+[submodule "vim/nvim-bundle/vim-delve"]
+	path = vim/nvim-bundle/vim-delve
+	url = https://github.com/sebdah/vim-delve

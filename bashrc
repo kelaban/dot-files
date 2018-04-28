@@ -1,18 +1,42 @@
 [[ -s $HOME/.git-prompt.sh ]] && source ~/.git-prompt.sh
 
-PS1="\n"
-PS1+="\[\033[1;3\$(if [ \$? -eq 0 ]; then echo '2m\]:)' ; else echo '1m\]:('; fi)" #red or green star for last output
-PS1+="\[\033[m\] \[\033[36m\]\t \d" #date and time
-PS1+="\[\033[m\] [\[\033[35m\]\j" #number of jobs
-PS1+="\[\033[m\]\[\033[38;5;208m\]|\[\033[m\]\u\[\033[38;5;208m\]|\[\033[33m\]\h" #{user} @ {host}
-PS1+="\[\033[m\]] \[\033[1;34m\]\w" #working directory
-PS1+="\[\033[m\]\[\033[32m\]\$(__git_ps1)" #git branch
-PS1+="\[\033[m\] \[\033[32m\]\n$"
-PS1+="\[\033[m\] " #reset and command line
-export PS1=${PS1}
+
+RESET="\e[0m"
+GREEN="\e[32m"
+RED="\e[31m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+ORANGE="\e[30m"
+BG_ORANGE="\e[35m"
+CYAN="\e[36m"
+YELLOW="\e[33m"
+WHITE="\e[97m"
+LIGHT_GREY="\e[37m"
+BASE1="\e[38;5;245m"
+
+function _update_ps1() {
+  #PS1=$(powerline-shell $?)
+  rc=$?
+  [ $rc -eq 0 ] && rccolor=${GREEN} || rccolor=${RED}
+  pipe="${RESET}|"
+  PS1="\n"
+  PS1+="${RESET}${BLUE}\t \d" #date and time
+  PS1+="${RESET} [${MAGENTA}\j" #number of jobs
+  PS1+="${RESET}${pipe}${LIGHT_GREY}\u${pipe}${YELLOW}\h${RESET}]" #{user} @ {host}
+  PS1+="${RESET}${BASE1} \w" #working directory
+  PS1+="${RESET}${GREEN}$(__git_ps1)" #git branch
+  PS1+="${RESET}\n${rccolor}$([ $rc -eq 0 ] && echo '✔\$' || echo '✘\$')"
+  PS1+="${RESET} " #reset and command line
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+  PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+#export PS1=${PS1}
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+#export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 alias ls='ls -F --color=always'
 alias ll='ls -l'
@@ -40,4 +64,4 @@ fi
 [[ -s $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
+[[ -s "$HOME/.kube/completion.bash.inc" ]] && source "$HOME/.kube/completion.bash.inc"
