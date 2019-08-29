@@ -49,3 +49,10 @@
 [submodule "vim/nvim-bundle/vim-delve"]
 	path = vim/nvim-bundle/vim-delve
 	url = https://github.com/sebdah/vim-delve
+[submodule "vim/bundle/typescript-vim"]
+	path = vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim
+
+[submodule "vim/bundle/jedi-vim"]
+	path = vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim

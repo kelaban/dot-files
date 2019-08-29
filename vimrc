@@ -291,3 +291,13 @@ set diffexpr=DiffW()
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
+let g:go_version_warning = 0
+
+"vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_fenced_languages = ['go=go']
+
+
+"jedi-vim
+let g:jedi#goto_command = "<C-]>"
+
